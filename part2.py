@@ -1,16 +1,10 @@
-from nltk.translate import IBMModel1
-from nltk.translate import IBMModel2
-from nltk.translate import AlignedSent
 import json
-import pprint
 import itertools
-
-pp=pprint.PrettyPrinter(indent=4)
-def main():
+from nltk.translate import IBMModel1,IBMModel2,AlignedSent
+def get_data():
 
 	# store the corpus for each model
-	corpus1=[]
-	corpus2=[]
+	corpus=[]
 	# sets for each type of word
 	source_set=set()
 	target_set=set()
@@ -29,35 +23,51 @@ def main():
 		target=example[settings['target']].split()
 		source_set=source_set.union(set(source))
 		target_set=target_set.union(set(target))
-		corpus1.append(AlignedSent(source,target))
+		corpus.append(AlignedSent(source,target))
 
 	# to account for no mapping of the target
 	source_set.add(None)
 	
-	# copying the corpus data
-	corpus2=corpus1[:]
+	return corpus,source_set,target_set,settings
 
-	# Train the first model
-	ibm1=IBMModel1(corpus1,settings['iterations'])
+def get_examples(settings):
+	'''Extract the examples of the data'''
 
-	# Train the latter model
-	ibm2=IBMModel2(corpus2,settings['iterations'])
+	# open the file with the training data
+	with open(settings['train-data']) as f:
+		examples=json.load(f)
+
+		return examples
+
+def use_IBM1(corpus,settings):
+
+	# train the model
+	ibm1=IBMModel1(corpus,settings['iterations'])
+
+	return ibm1,corpus
+
+def use_IBM2(corpus,settings):
 	
+	# train the model
+	ibm2=IBMModel2(corpus,settings['iterations'])
+
+	return ibm2,corpus
+
+def print_data(ibm,source_set,target_set,model_num):
 
 	product=itertools.product(source_set,target_set)
 
 
-	print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Result for Model 1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+	print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Result for Model %d @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",model_num)
 	
 	for pair in product:
-		print("Source:%s\nTarget:%s\nProbability:%s\n"%(pair[0],pair[1],ibm1.translation_table[pair[0]][pair[1]]))
-
-	product=itertools.product(source_set,target_set)
-
-	print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Result for Model 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-	
-	for pair in product:
-		print("Source:%s\nTarget:%s\nProbability:%s\n"%(pair[0],pair[1],ibm2.translation_table[pair[0]][pair[1]]))
+		print("Source:%s\nTarget:%s\nProbability:%s\n"%(pair[0],pair[1],ibm.translation_table[pair[0]][pair[1]]))
 
 if __name__=='__main__':
-	main()
+
+	corpus,source_set,target_set,settings=get_data()
+	ibm,corpus=use_IBM1(corpus,settings)
+	print_data(ibm,source_set,target_set,1)
+
+	ibm,corpus=use_IBM2(corpus,settings)
+	print_data(ibm,source_set,target_set,2)
