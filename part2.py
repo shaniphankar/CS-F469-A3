@@ -1,6 +1,8 @@
 from nltk.translate import IBMModel1
 from nltk.translate import AlignedSent
 import json
+import pprint
+pp=pprint.PrettyPrinter(indent=4)
 def main():
 
 	corpus1=[]
@@ -27,6 +29,9 @@ def main():
 
 	# Train the latter model
 	ibm2=IBMModel2(corpus2,settings['iterations'])
+	print(corpus1)
+	print(corpus2)
+
 
 if '__name__'=='__main__':
 	main()

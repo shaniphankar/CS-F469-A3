@@ -21,16 +21,6 @@ def get_words_corpus(corpus):
 			data[foreign_lang].append(fr_word)
 	return data
 
-def get_words_sentence(sentence_pair):
-	data={}
-	data[native_lang]=[]
-	data[foreign_lang]=[]
-	for en_word in nltk.word_tokenize(sentence_pair[native_lang]):
-		data[native_lang].append(en_word)
-	for fr_word in nltk.word_tokenize(sentence_pair[foreign_lang]):
-		data[foreign_lang].append(fr_word)
-	return data
-
 def myinit(data):
 	 return {en_word: {fr_word: 1/len(data[native_lang]) for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
 
