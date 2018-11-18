@@ -1,0 +1,6 @@
+{
+	"train-data":"data1.json",
+	"source":"fr",
+	"target":"en",
+	"iterations":10
+}
