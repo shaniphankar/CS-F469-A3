@@ -1,4 +1,5 @@
 from nltk.translate import IBMModel1
+from nltk.translate import IBMModel2
 from nltk.translate import AlignedSent
 import json
 import pprint
@@ -30,8 +31,9 @@ def main():
 	# Train the latter model
 	ibm2=IBMModel2(corpus2,settings['iterations'])
 	print(corpus1)
+	print("\n")
 	print(corpus2)
 
 
-if '__name__'=='__main__':
+if __name__=='__main__':
 	main()
