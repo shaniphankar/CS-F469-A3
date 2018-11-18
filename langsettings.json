@@ -1,6 +1,6 @@
 {
-	"train-data":"data1.json",
-	"source":"fr",
+	"train-data":"eng-hin.json",
+	"source":"hi",
 	"target":"en",
 	"iterations":10
 }
