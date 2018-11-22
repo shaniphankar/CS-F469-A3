@@ -28,7 +28,7 @@ if __name__=='__main__':
 			else: #If source phrase has already been encountered, increase count
 				english[i[2]] += 1
 
-	# scores of the phrases is determined by the formula score(f,e) = count(f,e)/count(f)
+	# scores of the phrases is determined by the formula score(t,s) = count(t,s)/count(s)
 	scores = {}
 
 	for phrase in foreign_eng:
