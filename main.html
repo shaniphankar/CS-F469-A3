@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>main</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/phani/Downloads/CS%20F469%20IR/CS-F469-A3/main.py">/home/phani/Downloads/CS F469 IR/CS-F469-A3/main.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;program&nbsp;returns&nbsp;the&nbsp;output&nbsp;for&nbsp;part1&nbsp;of&nbsp;the&nbsp;assignment.&nbsp;The&nbsp;output&nbsp;contains&nbsp;a&nbsp;list&nbsp;of&nbsp;tuples&nbsp;containing&nbsp;the&nbsp;sentence&nbsp;pairs&nbsp;in&nbsp;source&nbsp;and&nbsp;target&nbsp;languages&nbsp;along&nbsp;with&nbsp;alignment</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="itertools.html">itertools</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="nltk.html">nltk</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pprint.html">pprint</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-align"><strong>align</strong></a>(en_sents, fr_sents, en_order, fr_order, current_probs)</dt><dd><tt>Obtains&nbsp;the&nbsp;alignment&nbsp;vector&nbsp;for&nbsp;each&nbsp;sentence&nbsp;pair</tt></dd></dl>
+ <dl><dt><a name="-distance"><strong>distance</strong></a>(data1, data2)</dt><dd><tt>Gets&nbsp;a&nbsp;euclidean-like&nbsp;distance&nbsp;between&nbsp;all&nbsp;the&nbsp;values&nbsp;in&nbsp;the&nbsp;dictionary</tt></dd></dl>
+ <dl><dt><a name="-drive"><strong>drive</strong></a>(corpus)</dt><dd><tt>The&nbsp;function&nbsp;that&nbsp;does&nbsp;the&nbsp;primary&nbsp;work.&nbsp;Returns&nbsp;the&nbsp;alignments&nbsp;and&nbsp;Word&nbsp;probabilities</tt></dd></dl>
+ <dl><dt><a name="-get_words_corpus"><strong>get_words_corpus</strong></a>(corpus)</dt><dd><tt>Converts&nbsp;the&nbsp;sentence&nbsp;pairs&nbsp;into&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;words.</tt></dd></dl>
+ <dl><dt><a name="-key_maxval"><strong>key_maxval</strong></a>(d)</dt><dd><tt>Returns&nbsp;the&nbsp;translated&nbsp;word&nbsp;with&nbsp;maximum&nbsp;probability</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Entry&nbsp;point&nbsp;to&nbsp;our&nbsp;program</tt></dd></dl>
+ <dl><dt><a name="-myinit"><strong>myinit</strong></a>(data)</dt><dd><tt>Initializes&nbsp;the&nbsp;probabilities&nbsp;for&nbsp;each&nbsp;eng_word,foreign_word&nbsp;pair</tt></dd></dl>
+ <dl><dt><a name="-myinit_invert"><strong>myinit_invert</strong></a>(data)</dt><dd><tt>Initializes&nbsp;the&nbsp;probabilities&nbsp;for&nbsp;each&nbsp;eng_word,foreign_word&nbsp;pair&nbsp;in&nbsp;the&nbsp;opposite&nbsp;order</tt></dd></dl>
+ <dl><dt><a name="-myinit_zeros"><strong>myinit_zeros</strong></a>(data)</dt><dd><tt>Initializes&nbsp;the&nbsp;probabilities&nbsp;for&nbsp;each&nbsp;eng_word,foreign_word&nbsp;pair&nbsp;but&nbsp;with&nbsp;0&nbsp;value.</tt></dd></dl>
+ <dl><dt><a name="-pow"><strong>pow</strong></a>(...)</dt><dd><tt><a href="#-pow">pow</a>(x,&nbsp;y)<br>
+&nbsp;<br>
+Return&nbsp;x**y&nbsp;(x&nbsp;to&nbsp;the&nbsp;power&nbsp;of&nbsp;y).</tt></dd></dl>
+ <dl><dt><a name="-sqrt"><strong>sqrt</strong></a>(...)</dt><dd><tt><a href="#-sqrt">sqrt</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-train"><strong>train</strong></a>(en_sents, fr_sents, corpus, epsilon)</dt><dd><tt>Trains&nbsp;the&nbsp;model&nbsp;using&nbsp;EM&nbsp;algorithm&nbsp;until&nbsp;the&nbsp;given&nbsp;epsilon&nbsp;threshold&nbsp;is&nbsp;reached.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>examples</strong> = 'data2.json'<br>
+<strong>f</strong> = &lt;_io.TextIOWrapper name='langsettings.json' mode='r' encoding='UTF-8'&gt;<br>
+<strong>foreign_lang</strong> = 'fr'<br>
+<strong>iters</strong> = 10<br>
+<strong>native_lang</strong> = 'en'<br>
+<strong>pp</strong> = &lt;pprint.PrettyPrinter object&gt;<br>
+<strong>settings</strong> = {'iterations': 10, 'source': 'en', 'target': 'fr', 'train-data': 'data2.json'}</td></tr></table>
+</body></html>

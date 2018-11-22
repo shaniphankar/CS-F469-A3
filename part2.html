@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module part2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>part2</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/phani/Downloads/CS%20F469%20IR/CS-F469-A3/part2.py">/home/phani/Downloads/CS F469 IR/CS-F469-A3/part2.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="itertools.html">itertools</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-get_data"><strong>get_data</strong></a>()</dt><dd><tt>Obtains&nbsp;the&nbsp;source&nbsp;data&nbsp;based&nbsp;on&nbsp;the&nbsp;settings&nbsp;set&nbsp;within&nbsp;the&nbsp;configuration&nbsp;file&nbsp;identified&nbsp;by&nbsp;"langsettings.json".&nbsp;<br>
+Important&nbsp;Constants:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"train-data"&nbsp;=&nbsp;The&nbsp;training&nbsp;data&nbsp;to&nbsp;be&nbsp;used&nbsp;within&nbsp;the&nbsp;model<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"source"&nbsp;=&nbsp;The&nbsp;language&nbsp;which&nbsp;is&nbsp;to&nbsp;be&nbsp;translated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"target"&nbsp;=&nbsp;The&nbsp;language&nbsp;to&nbsp;which&nbsp;the&nbsp;translation&nbsp;must&nbsp;be&nbsp;made.<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corpus&nbsp;=&nbsp;A&nbsp;list&nbsp;of&nbsp;Alignment&nbsp;Objects,&nbsp;which&nbsp;inturn&nbsp;contain&nbsp;tuples&nbsp;of&nbsp;the&nbsp;source&nbsp;language,&nbsp;the&nbsp;target&nbsp;language&nbsp;and&nbsp;the&nbsp;possible&nbsp;alignment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source_set&nbsp;=&nbsp;The&nbsp;set&nbsp;of&nbsp;all&nbsp;the&nbsp;words&nbsp;present&nbsp;within&nbsp;the&nbsp;source<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target_set&nbsp;=&nbsp;The&nbsp;set&nbsp;of&nbsp;all&nbsp;the&nbsp;words&nbsp;present&nbsp;within&nbsp;the&nbsp;target</tt></dd></dl>
+ <dl><dt><a name="-get_examples"><strong>get_examples</strong></a>(settings)</dt><dd><tt>Extract&nbsp;the&nbsp;examples&nbsp;of&nbsp;the&nbsp;data</tt></dd></dl>
+ <dl><dt><a name="-print_data"><strong>print_data</strong></a>(ibm, source_set, target_set, model_num)</dt><dd><tt>Prints&nbsp;the&nbsp;data&nbsp;for&nbsp;each&nbsp;mapping&nbsp;of&nbsp;the&nbsp;source&nbsp;word&nbsp;and&nbsp;the&nbsp;destination&nbsp;word.<br>
+Input:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ibm&nbsp;=&nbsp;The&nbsp;object&nbsp;returned&nbsp;by&nbsp;the&nbsp;ibm&nbsp;model&nbsp;containing&nbsp;all&nbsp;the&nbsp;mapping&nbsp;probabilities<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source_set&nbsp;=&nbsp;The&nbsp;set&nbsp;of&nbsp;words&nbsp;belonging&nbsp;to&nbsp;the&nbsp;source<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target_set&nbsp;=&nbsp;The&nbsp;set&nbsp;of&nbsp;words&nbsp;belonging&nbsp;to&nbsp;the&nbsp;target<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model_num&nbsp;=&nbsp;Tells&nbsp;the&nbsp;number&nbsp;of&nbsp;the&nbsp;IBM&nbsp;Model&nbsp;used</tt></dd></dl>
+ <dl><dt><a name="-use_IBM1"><strong>use_IBM1</strong></a>(corpus, settings)</dt><dd><tt>Gives&nbsp;back&nbsp;the&nbsp;result&nbsp;on&nbsp;a&nbsp;corpus&nbsp;containing&nbsp;Aligned&nbsp;Objects,&nbsp;on&nbsp;using&nbsp;IBM&nbsp;Model&nbsp;1<br>
+Inputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corpus&nbsp;=&nbsp;A&nbsp;list&nbsp;of&nbsp;Alignment&nbsp;Objects,&nbsp;which&nbsp;inturn&nbsp;contain&nbsp;tuples&nbsp;of&nbsp;the&nbsp;source&nbsp;language,&nbsp;the&nbsp;target&nbsp;language&nbsp;and&nbsp;the&nbsp;possible&nbsp;alignment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings&nbsp;=&nbsp;&nbsp;The&nbsp;hardcoded&nbsp;options&nbsp;set&nbsp;within&nbsp;the&nbsp;"langsettings.json"&nbsp;file<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ibm1&nbsp;=&nbsp;An&nbsp;object&nbsp;containing&nbsp;the&nbsp;mapping&nbsp;for&nbsp;the&nbsp;foreign&nbsp;words&nbsp;and&nbsp;the&nbsp;tranlated&nbsp;words&nbsp;and&nbsp;the&nbsp;probabilities&nbsp;of&nbsp;each<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corpus&nbsp;=&nbsp;The&nbsp;modified&nbsp;input,&nbsp;which&nbsp;has&nbsp;the&nbsp;alignments&nbsp;for&nbsp;each&nbsp;word.</tt></dd></dl>
+ <dl><dt><a name="-use_IBM2"><strong>use_IBM2</strong></a>(corpus, settings)</dt><dd><tt>Gives&nbsp;back&nbsp;the&nbsp;result&nbsp;on&nbsp;a&nbsp;corpus&nbsp;containing&nbsp;Aligned&nbsp;Objects,&nbsp;on&nbsp;using&nbsp;IBM&nbsp;Model&nbsp;2<br>
+Inputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corpus&nbsp;=&nbsp;A&nbsp;list&nbsp;of&nbsp;Alignment&nbsp;Objects,&nbsp;which&nbsp;inturn&nbsp;contain&nbsp;tuples&nbsp;of&nbsp;the&nbsp;source&nbsp;language,&nbsp;the&nbsp;target&nbsp;language&nbsp;and&nbsp;the&nbsp;possible&nbsp;alignment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings&nbsp;=&nbsp;&nbsp;The&nbsp;hardcoded&nbsp;options&nbsp;set&nbsp;within&nbsp;the&nbsp;"langsettings.json"&nbsp;file<br>
+Outputs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ibm2&nbsp;=&nbsp;An&nbsp;object&nbsp;containing&nbsp;the&nbsp;mapping&nbsp;for&nbsp;the&nbsp;foreign&nbsp;words&nbsp;and&nbsp;the&nbsp;tranlated&nbsp;words&nbsp;and&nbsp;the&nbsp;probabilities&nbsp;of&nbsp;each<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corpus&nbsp;=&nbsp;The&nbsp;modified&nbsp;input,&nbsp;which&nbsp;has&nbsp;the&nbsp;alignments&nbsp;for&nbsp;each&nbsp;word.</tt></dd></dl>
+</td></tr></table>
+</body></html>
