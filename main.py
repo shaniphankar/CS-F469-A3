@@ -29,6 +29,7 @@ def get_words_corpus(corpus):
 			data[native_lang].append(en_word)
 		for fr_word in nltk.word_tokenize(dict[foreign_lang]):
 			data[foreign_lang].append(fr_word)
+	data[foreign_lang].append("NULL")
 	return data
 
 def myinit(data):
@@ -66,6 +67,7 @@ def train(en_sents,fr_sents,corpus,epsilon):
 		for dict in corpus:
 			en_sent=dict[native_lang]
 			fr_sent=dict[foreign_lang]
+			fr_sent+=" NULL"
 			print(en_sent,fr_sent)
 			s_total={}
 			for en_word in nltk.word_tokenize(en_sent):
@@ -84,36 +86,46 @@ def train(en_sents,fr_sents,corpus,epsilon):
 		i+=1
 
 	# pp.pprint(prev_probs)
-	pp.pprint(current_probs)
-	pp.pprint(i)
+	# pp.pprint(current_probs)
+	# pp.pprint(i)
 		
 	return current_probs
 
-def align(sents,to,current_probs):
+def align(en_sents,fr_sents,en_order,fr_order,current_probs):
 	trans_sents=[]
-	for sent in sents:
-		# print(sent)
-		for word in nltk.word_tokenize(sent):
-			pp.pprint(word)
-			pp.pprint(key_maxval(current_probs[word]))
-			# pp.pprint(current_probs[word])
-	# return
+	aligned_obj=[]
+	for i in range(len(en_sents)):
+		tup_list=[]
+		for word in nltk.word_tokenize(en_sents[i]):
+			trans_word=key_maxval(current_probs[word])
+			if(trans_word=='NULL'):
+				tup_list.append((en_order[en_sents[i]][word],'NULL'))
+				continue
+			tup_list.append((en_order[en_sents[i]][word],fr_order[fr_sents[i]][trans_word]))
+		aligned_obj.append((nltk.word_tokenize(en_sents[i]),nltk.word_tokenize(fr_sents[i]),tup_list))
+	# pp.pprint(aligned_obj)
+	return aligned_obj
 
-
-
-def main():
-	f=open(examples,'r',encoding='utf-8')
-	corpus=json.load(f)
-	f.close()
-	# pp.pprint(corpus)
-		# pp.pprint(nltk.word_tokenize(dict[native_lang]))
-		# pp.pprint(nltk.word_tokenize(dict[foreign_lang])) 
-	# print(data)
+def drive(corpus):
 	en_sents=[]
 	fr_sents=[]
+	en_order={}
+	fr_order={}
 	for dict in corpus:
 		en_sents.append(dict[native_lang])
 		fr_sents.append(dict[foreign_lang])
+	for en_sent in en_sents:
+		ind=0
+		en_order[en_sent]={}
+		for word in nltk.word_tokenize(en_sent):
+			en_order[en_sent][word]=ind
+			ind+=1
+	for fr_sent in fr_sents:
+		ind=0
+		fr_order[fr_sent]={}
+		for word in nltk.word_tokenize(fr_sent):
+			fr_order[fr_sent][word]=ind
+			ind+=1
 	current_probs=train(en_sents,fr_sents,corpus,0.00000001)
 	current_probs_invert=myinit_invert(get_words_corpus(corpus));
 	for k1,v1 in current_probs.items():
@@ -121,7 +133,23 @@ def main():
 		for v2 in v1.keys():
 			current_probs_invert[v2][k1]=v1[v2]
 			# print(v1[v2])
+	pp.pprint(current_probs)
 	# pp.pprint(current_probs_invert)
-	align(fr_sents,"en",current_probs_invert)
+	aligned_obj=align(en_sents,fr_sents,en_order,fr_order,current_probs)
+	print(aligned_obj)
+	# align(fr_sents,"en",current_probs_invert)
+	return current_probs,aligned_obj
+
+
+def main():
+	f=open(examples,'r',encoding='utf-8')
+	corpus=json.load(f)
+	f.close()
+	drive(corpus)
+	# pp.pprint(corpus)
+		# pp.pprint(nltk.word_tokenize(dict[native_lang]))
+		# pp.pprint(nltk.word_tokenize(dict[foreign_lang])) 
+	# print(data)
+	
 if __name__ == '__main__':
 	main()
