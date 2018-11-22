@@ -61,7 +61,7 @@ def use_IBM1(corpus,settings):
 		corpus = A list of Alignment Objects, which inturn contain tuples of the source language, the target language and the possible alignment
 		settings =  The hardcoded options set within the "langsettings.json" file
 	Outputs:
-		ibm1 = An object containing the mapping for the foreign words and the tranlated words and the probabilities of each
+		ibm1 = An object containing the mapping for the foreign words and the translated words and the probabilities of each
 		corpus = The modified input, which has the alignments for each word.
 '''
 	# train the model
@@ -76,7 +76,7 @@ def use_IBM2(corpus,settings):
 		corpus = A list of Alignment Objects, which inturn contain tuples of the source language, the target language and the possible alignment
 		settings =  The hardcoded options set within the "langsettings.json" file
 	Outputs:
-		ibm2 = An object containing the mapping for the foreign words and the tranlated words and the probabilities of each
+		ibm2 = An object containing the mapping for the foreign words and the translated words and the probabilities of each
 		corpus = The modified input, which has the alignments for each word.
 '''
 	# train the model
