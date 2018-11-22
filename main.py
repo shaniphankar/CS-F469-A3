@@ -1,3 +1,7 @@
+"""
+This program returns the output for part1 of the assignment. The output contains a list of tuples containing the sentence pairs in source and target languages along with alignment
+"""
+
 import nltk
 import os
 import json
@@ -16,11 +20,17 @@ examples=settings['train-data']
 iters=settings['iterations']
 
 def key_maxval(d):
+     """
+     Returns the translated word with maximum probability
+     """
      v=list(d.values())
      k=list(d.keys())
      return k[v.index(max(v))]
 
 def get_words_corpus(corpus):
+	"""
+	Converts the sentence pairs into a dictionary of words.
+	"""
 	data={}
 	data[native_lang]=[]
 	data[foreign_lang]=[]
@@ -33,13 +43,26 @@ def get_words_corpus(corpus):
 	return data
 
 def myinit(data):
-	 return {en_word: {fr_word: 1/len(data[native_lang]) for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
+	"""
+	Initializes the probabilities for each eng_word,foreign_word pair
+	"""
+	
+	return {en_word: {fr_word: 1/len(data[native_lang]) for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
 def myinit_zeros(data):
-	 return {en_word: {fr_word: 0 for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
+	"""
+	Initializes the probabilities for each eng_word,foreign_word pair but with 0 value.
+	"""
+	return {en_word: {fr_word: 0 for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
 def myinit_invert(data):
-	 return {fr_word: {en_word: 1/len(data[foreign_lang]) for en_word in data[native_lang]} for fr_word in data[foreign_lang]}
+	"""
+	Initializes the probabilities for each eng_word,foreign_word pair in the opposite order
+	"""
+	return {fr_word: {en_word: 1/len(data[foreign_lang]) for en_word in data[native_lang]} for fr_word in data[foreign_lang]}
 
 def distance(data1,data2):
+	"""
+	Gets a euclidean-like distance between all the values in the dictionary
+	"""
 	dist=0
 	row_iters=data1.keys()
 	row_vals=list(data1.values())
@@ -50,6 +73,9 @@ def distance(data1,data2):
 	return sqrt(dist)
 
 def train(en_sents,fr_sents,corpus,epsilon):
+	"""
+	Trains the model using EM algorithm until the given epsilon threshold is reached.
+	"""
 	data=get_words_corpus(corpus)
 	prev_probs=myinit(data)
 	current_probs=myinit_zeros(data)
@@ -92,6 +118,9 @@ def train(en_sents,fr_sents,corpus,epsilon):
 	return current_probs
 
 def align(en_sents,fr_sents,en_order,fr_order,current_probs):
+	"""
+	Obtains the alignment vector for each sentence pair
+	"""
 	trans_sents=[]
 	aligned_obj=[]
 	for i in range(len(en_sents)):
@@ -107,6 +136,9 @@ def align(en_sents,fr_sents,en_order,fr_order,current_probs):
 	return aligned_obj
 
 def drive(corpus):
+	"""
+	The function that does the primary work. Returns the alignments and Word probabilities
+	"""
 	en_sents=[]
 	fr_sents=[]
 	en_order={}
@@ -142,6 +174,9 @@ def drive(corpus):
 
 
 def main():
+	"""
+	Entry point to our program
+	"""
 	f=open(examples,'r',encoding='utf-8')
 	corpus=json.load(f)
 	f.close()
