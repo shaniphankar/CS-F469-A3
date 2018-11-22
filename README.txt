@@ -1,10 +1,8 @@
 ************************************    Running the Code    *****************************************
 1. Install nltk via pip.
 
-2. The file langsettings.json contains the information about 
-which corpus is being used. Edit the "train-data" attribute to change it.
-data1.json and data2.json are the provided corpuses and eng-it.json is
-ours (english-italian).
+2. The file langsettings.json contains the information about which corpus is being used. Edit the "train-data" attribute to change it.
+data1.json and data2.json are the provided corpuses and eng-it.json is ours (english-italian).
 
 3. The attributes "source" and "target" in langsettings.json dictate the source language and the target language. The attribute "iterations" controls the number of iterations the model does.
 
