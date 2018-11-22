@@ -42,7 +42,10 @@ def get_data():
 
 def get_examples(settings):
 	'''
-	Extract the examples of the data
+	Extract the examples of the data from the train-data that has been defined within the "langsettings.json" file
+	It holds the training examples in the form of tuples in which they have been tagged in the following form
+	"source" = the source or the language to be translated
+	"target" = the target or the language in which the translation will be obtained
 	'''
 
 	# open the file with the training data
