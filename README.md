@@ -4,7 +4,7 @@
 <p> The objective of this assignment is to make use of the IBM Models so as to tranlate one language to another. This assignment consists of three parts:</p>
 <ul>
   <li> Create an Implementation of IBM Model 1</li>
-  <li> Make use of the NLTK toolkit of python, so as to compare the results of those results from the previous implementation and the imlementation within the libraries</li>
+  <li> Make use of the NLTK toolkit of python, so as to compare the results of those results from the previous implementation and the imlementation within the libraries to generate the results of IBM Model 1 and IBM Model 2</li>
   <li> To make use of phrase queries, with the help of the functions present within the NLTK toolkit</li>
 </ul>
 
