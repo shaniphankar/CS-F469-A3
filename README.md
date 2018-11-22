@@ -8,7 +8,7 @@
   <li> To make use of phrase queries, with the help of the functions present within the NLTK toolkit</li>
 </ul>
 
-<p> Currently, the program has been structured in the following manner </p>
+<p> Currently, the program has been structured in the following manner- </p>
 <ul> 
   <li><strong> main.py </strong> contains the our implementation of IBM Model 1</li>
   <li><strong> part2.py </strong> contains the results from NLTK </li>
