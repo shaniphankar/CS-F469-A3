@@ -80,11 +80,9 @@ def train(en_sents,fr_sents,corpus,epsilon):
 	prev_probs=myinit(data)
 	current_probs=myinit_zeros(data)
 	converged=False
-	# pp.pprint(prev_probs)
 	error=100
 	i=0
 	combos=list(itertools.product(en_sents,fr_sents))
-	pp.pprint(combos)
 	while(i<iters):
 	# while error>epsilon:
 		count={en_word:{fr_word:0 for fr_word in data[foreign_lang]} for en_word in data[native_lang]}
@@ -94,7 +92,6 @@ def train(en_sents,fr_sents,corpus,epsilon):
 			en_sent=dict[native_lang]
 			fr_sent=dict[foreign_lang]
 			fr_sent+=" NULL"
-			print(en_sent,fr_sent)
 			s_total={}
 			for en_word in nltk.word_tokenize(en_sent):
 				s_total[en_word]=0
@@ -127,7 +124,7 @@ def align(en_sents,fr_sents,en_order,fr_order,current_probs):
 		tup_list=[]
 		for word in nltk.word_tokenize(en_sents[i]):
 			trans_word=key_maxval(current_probs[word])
-			if(trans_word=='NULL'):
+			if(trans_word=='NULL' or trans_word not in nltk.word_tokenize(fr_sents[i])):
 				tup_list.append((en_order[en_sents[i]][word],'NULL'))
 				continue
 			tup_list.append((en_order[en_sents[i]][word],fr_order[fr_sents[i]][trans_word]))
@@ -165,10 +162,9 @@ def drive(corpus):
 		for v2 in v1.keys():
 			current_probs_invert[v2][k1]=v1[v2]
 			# print(v1[v2])
-	pp.pprint(current_probs)
 	# pp.pprint(current_probs_invert)
 	aligned_obj=align(en_sents,fr_sents,en_order,fr_order,current_probs)
-	print(aligned_obj)
+	# print(aligned_obj)
 	# align(fr_sents,"en",current_probs_invert)
 	return current_probs,aligned_obj
 
@@ -180,7 +176,9 @@ def main():
 	f=open(examples,'r',encoding='utf-8')
 	corpus=json.load(f)
 	f.close()
-	drive(corpus)
+	prob_table,aligned_obj=drive(corpus)
+	pp.pprint(prob_table)
+	pp.pprint(aligned_obj)
 	# pp.pprint(corpus)
 		# pp.pprint(nltk.word_tokenize(dict[native_lang]))
 		# pp.pprint(nltk.word_tokenize(dict[foreign_lang])) 
