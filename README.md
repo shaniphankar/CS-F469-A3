@@ -1,4 +1,4 @@
-# CS-F469-A3
+# Machine Translation
 <h3>IBM Machine Translation Models</h3>
 
 <p> The objective of this assignment is to make use of the IBM Models so as to tranlate one language to another. This assignment consists of three parts:</p>
